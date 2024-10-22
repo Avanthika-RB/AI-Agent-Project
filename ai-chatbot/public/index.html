@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatBot Homepage</title>
+  <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+  <div class="container">
+    <h1>AI ChatBot</h1>
+    <p>
+        This Chatbot uses OpenAI API and MongoDB which stores conversation interactions
+        in a database and logs user events. Click the button below to start.
+    </p>
+    <button id="navigate-chatbot">Start</button>
+    <form id="participant-form" action="/chat.html">
+      <label for="participantID">Enter your Participant ID:</label>
+      <input type="text" id="participantID" name="participantID" required>
+      <button type="submit">Start Chat</button>
+    </form>
+    <script>
+      document.getElementById('participant-form').addEventListener('submit', function(event) {
+        const participantID = document.getElementById('participantID').value;
+        localStorage.setItem('participantID', participantID);  
+      });
+    </script>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
