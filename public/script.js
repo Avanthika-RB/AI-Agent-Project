@@ -2,10 +2,10 @@ let inputField = document.getElementById('user-input');
 let sendBtn = document.getElementById('send-btn');
 let messagesContainer = document.getElementById('messages');
 const participantID = localStorage.getItem('participantID');
-if (!participantID) {
+/*if (!participantID) {
     alert('Please enter a participant ID.');
     window.location.href = '/';
-}
+}*/
 
 let conversationHistory = [];
 async function sendMessage() {
