@@ -1,37 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat Interface</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div id="chat-container">
-    <h1>AI Chatbot</h1>
-    <div id="messages"></div>
-    <input type="text" id="user-input" placeholder="Type your message...">
-    <button id="send-btn">Send</button>
-  </div>
-  <!-- Include stylesheet -->
-<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot</title>
+    <link href="chat.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <main>
+      <div id="left-container">
+        <div id="chat-container" class="section">
+          <h2>AI ChatBot</h2>
+          <div id="messages"></div>
+          <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Type your message..." />
+            <button type="submit" id="submit">Send</button>
+          </form>
+        </div>
 
-<!-- Create the editor container -->
-<div id="editor">
-  <p>Hello World!</p>
-  <p>Some initial <strong>bold</strong> text</p>
-  <p><br /></p>
-</div>
+        <div id="search-section" class="section">
+          <h2>Search Results</h2>
+          <!-- Bing search results will go here -->
+        </div>
+      </div>
 
-<!-- Include the Quill library -->
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+      <div id="right-section" class="section">
+        <h2>Quiz Yourself with AI</h2>
+        <!-- Dropdown to select coursework -->
+        <div id="coursework-container">
+          <h4>
+            <label for="coursework">Select coursework:</label>
+            <select id="coursework">
+              <optgroup label="High School Levels">
+                <option value="hs-freshman-spanish">High School Freshman Spanish</option>
+                <option value="hs-sophomore-spanish">High School Sophomore Spanish</option>
+                <option value="hs-junior-spanish">High School Junior Spanish</option>
+                <option value="hs-senior-spanish">High School Senior Spanish</option>
+              </optgroup>
+              <optgroup label="College Levels">
+                <option value="college-freshman-spanish">College Spanish 100 Levels (Freshman)</option>
+                <option value="college-sophomore-spanish">College Spanish 200 Levels (Sophomore)</option>
+                <option value="college-junior-spanish">College Spanish 300 Levels (Junior)</option>
+                <option value="college-senior-spanish">College Spanish 400 Levels (Senior)</option>
+              </optgroup>
+            </select>
+          </h4>
+        </div>
 
-<!-- Initialize Quill editor -->
-<script>
-  const quill = new Quill('#editor', {
-    theme: 'snow'
-  });
-</script>
-  <script src="script.js"></script>
-</body>
+        <!-- Upload syllabus button -->
+        <div id="syllabus-upload-container">
+          <h4>
+            <label for="syllabus-upload" class="syllabus-label">Upload Syllabus (PDF):</label>
+            <input type="file" id="syllabus-upload" accept="application/pdf" />
+          </h4>
+        </div>
+
+        <div id="quiz-container">
+          <!-- Flashcard question area -->
+          <div id="question-area">
+            <button id="start-quiz-button" style="display: block">Start Quiz!</button>
+
+            <p></p>
+            <div id="answers"></div>
+            <div id="feedback" style="display: none">
+              <span id="feedback-text"></span>
+              <span id="feedback-explanation"></span>
+            </div>
+            <button id="next-question-button" style="display: none" onclick="loadNextQuestion()">Next Question</button>
+          </div>
+
+          <!-- Topics and settings area -->
+          <div id="settings-area">
+            <h3>Topics</h3>
+            <label><input type="checkbox" name="topic" value="Vocabulary" checked /> Vocabulary</label>
+            <label><input type="checkbox" name="topic" value="Tenses" /> Tenses</label>
+            <label><input type="checkbox" name="topic" value="Writing Practice" /> Writing Practice</label>
+
+            <h3>Question Type</h3>
+            <label
+              ><input type="checkbox" name="question-type" value="Multiple Choice" checked /> Multiple Choice</label
+            >
+            <label><input type="checkbox" name="question-type" value="Fill in the Blank" /> Fill in the Blank</label>
+            <label><input type="checkbox" name="question-type" value="Single Word" /> Single Word</label>
+
+            <h3>Difficulty</h3>
+            <select id="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+
+            <button id="submit-settings" onclick="startQuizProcess()">Submit</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="chat.js"></script>
+    <script src="quiz.js"></script>
+    <script src="log.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </body>
 </html>
